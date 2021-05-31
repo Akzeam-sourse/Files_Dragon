@@ -108,7 +108,7 @@ local File = io.open('./'..Dragon..'.json', "w")
 File:write(GetJson)
 File:close()
 local SOFI = 'https://api.telegram.org/bot' .. TokenBot .. '/sendDocument'
-local curl = 'curl "' .. SOFI .. '" -F "chat_id='..DevId..'" -F "document=@'..Dragon..'.json' .. '" -F "caption=⌯︙نسخه تلقائيه تحتوي على ↫ '..#list..' مجموعه"'
+local curl = 'curl "' .. SOFI .. '" -F "chat_id='..DraGon..'" -F "document=@'..Dragon..'.json' .. '" -F "caption=⌯︙نسخه تلقائيه تحتوي على ↫ '..#list..' مجموعه"'
 io.popen(curl)
 io.popen('fm -fr '..Dragon..'.json')
 DevSOFI:set(Dragon.."SOFI:AutoFile:Time",os.date("%x"))
