@@ -3,7 +3,7 @@ local text = msg.content_.text_
 if ChatType == 'sp' or ChatType == 'gp'  then
 if not DevSOFI:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id_) then
 if text == "انجب" or text == "نجب" or text == "انجبي" or text == "نجبي" or text == "انجبو" or text == "نجبو" then
-if SudoId(msg) then
+if Sudo(msg) then
 rd = 'مطوريي اغلط شكد متريد نورتنه ، ♥️💪🏿'
 elseif SudoBot(msg) then
 rd = 'احترم نفسكك لا عبالكك رافعيك مطور ، 🖕🏿♥️'
@@ -97,7 +97,7 @@ DraGoN =  "ٰوينۨہهۂَ خۡل احۡصرهۂَ 𖠙 😹♥️"
 Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md') 
 return false
 end
-if text == 'سورس ريو' or text == 'سورس دراكون' or text == 'سورس دراكون' or text == 'سورس زربه' or text == 'السورس زربه' or text == 'سورس عاوي' or text == 'السورس عاوي' then 
+if text == 'سورس صوفي' or text == 'سورس دراكون' or text == 'سورس دراكون' or text == 'سورس زربه' or text == 'السورس زربه' or text == 'سورس عاوي' or text == 'السورس عاوي' then 
 DraGoN =  "لُِآ سوورس خآلُِتڪ دِي لُِڪ 𖠙 😒🔪" 
 Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
 return false
