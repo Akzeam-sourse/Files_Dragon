@@ -102,6 +102,66 @@ DraGoN =  "لُِآ سوورس خآلُِتڪ دِي لُِڪ 𖠙 😒🔪"
 Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
 return false
 end
+if text == 'بوسني' or text == 'بوسيني' then 
+DraGoN =  "-محِااﭑةه ، ݪسِقق  🥺♥️♥️؟." 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "صباحوا" or text == "صباح الخير" or text == "صباحو" then
+DraGoN =  "صَباحيّ ، ﭑنتةه🥺💞💞." 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "اكو بوت" or text == "اكو بوت؟" or text == "عدكم بوت" or text == "عندكم بوت" or text == "عدكم بوت؟" or text == "عندكم بوت؟" or text == "تردون بوت" or text == "تردون بوت؟" or text == "وين البوت" or text == "وين البوت؟" then
+DraGoN =  "-موَ بعَينڪۃ ، شنيَ ، 🌝🌝." 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "جاو" or text == "ججاو" then
+DraGoN =  "- ۅَتعۅفنيَ ؟." 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "تف" or text == "تفف" then
+DraGoN =  "چا غير مَي ، ۅࢪدَ ،" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "تحبني" or text == "تحبني؟" or text == "تحبني؟؟" then
+DraGoN =  "شعندِيّ ، غيࢪكَ🥵♥️♥️♥️" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "جوعان" or text == "جوعانه" then
+DraGoN =  "ټعاَل ﭑڪلنيَ ، 🌝." 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "ههه" or text == "هههه" or text == "ههههه" or text == "هههههه" or text == "ههههههه" then
+DraGoN =  "جَعل ، محدَ غيݛكَ ، يضحكَ  ، ♥️♥️" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "وينكم" then
+DraGoN =  "حَيݪيٰ ، 🥺💞" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "احبك" or text == "حبك" then
+DraGoN =  "ﭑنيۿمَ ، قسمَہ، 🥺💞" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == "بوت ملطلط" then
+DraGoN =  "ربي صبرني 😞🌾" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
+if text == 'وينك' or text == 'وينج' then
+DraGoN =  "مْوٌجہوٌدِ يہمْگُ يحلوُ  😉♥️" 
+Dev_SOFI(msg.chat_id_, msg.id_, 1, DraGoN, 1, 'md')
+return false
+end
 end
 
 if Manager(msg) then
