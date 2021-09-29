@@ -31,10 +31,10 @@ Vips = DevSOFI:smembers(Dragon..'SOFI:VipMem:'..v)
 if k == 1 then
 GetJson = GetJson..'"'..v..'":{'
 else
-GetJson = GetJson..'\n,"'..v..'":{'
+GetJson = GetJson..',"'..v..'":{'
 end
 if #Vips ~= 0 then 
-GetJson = GetJson..'\n"Vips":['
+GetJson = GetJson..'"Vips":['
 for k,v in pairs(Vips) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
@@ -45,7 +45,7 @@ end
 GetJson = GetJson..'],'
 end
 if #Admis ~= 0 then
-GetJson = GetJson..'\n"Admis":['
+GetJson = GetJson..'"Admis":['
 for k,v in pairs(Admis) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
@@ -56,7 +56,7 @@ end
 GetJson = GetJson..'],'
 end
 if #Managers ~= 0 then
-GetJson = GetJson..'\n"Managers":['
+GetJson = GetJson..'"Managers":['
 for k,v in pairs(Managers) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
@@ -67,7 +67,7 @@ end
 GetJson = GetJson..'],'
 end
 if #Constructors ~= 0 then
-GetJson = GetJson..'\n"Constructors":['
+GetJson = GetJson..'"Constructors":['
 for k,v in pairs(Constructors) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
@@ -78,7 +78,7 @@ end
 GetJson = GetJson..'],'
 end
 if #BasicConstructors ~= 0 then
-GetJson = GetJson..'\n"BasicConstructors":['
+GetJson = GetJson..'"BasicConstructors":['
 for k,v in pairs(BasicConstructors) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
@@ -89,7 +89,7 @@ end
 GetJson = GetJson..'],'
 end
 if #SOFIConstructors ~= 0 then
-GetJson = GetJson..'\n"SOFIConstructors":['
+GetJson = GetJson..'"SOFIConstructors":['
 for k,v in pairs(SOFIConstructors) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
@@ -100,12 +100,12 @@ end
 GetJson = GetJson..'],'
 end
 if LinkGroups then
-GetJson = GetJson..'\n"LinkGroups":"'..LinkGroups..'",'
+GetJson = GetJson..'"LinkGroups":"'..LinkGroups..'",'
 end
-GetJson = GetJson..'\n"Welcomes":"'..Welcomes..'"}'
+GetJson = GetJson..'"Welcomes":"'..Welcomes..'"}'
 end
 if #Members ~= 0 then 
-GetJson = GetJson..'\n,"mem":['
+GetJson = GetJson..',"mem":['
 for k,v in pairs(Members) do
 if k == 1 then
 GetJson =  GetJson..'"'..v..'"'
