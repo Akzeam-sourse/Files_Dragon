@@ -16,7 +16,7 @@ Time = DevSOFI:get(Dragon.."SOFI:AutoFile:Time")
 if Time then 
 if Time ~= os.date("%x") then 
 local list = DevSOFI:smembers(Dragon..'SOFI:Groups') 
-local Members = DevSOFI:smembers(Dragon..'SOFI:Users') 
+local Users = DevSOFI:smembers(Dragon..'SOFI:Users') 
 local BotName = (DevSOFI:get(Dragon.."SOFI:NameBot") or 'دراكون')
 local GetJson = '{"BotId": '..Dragon..',"BotName": "'..BotName..'","GroupsList":{'  
 for k,v in pairs(list) do 
@@ -32,6 +32,17 @@ if k == 1 then
 GetJson = GetJson..'"'..v..'":{'
 else
 GetJson = GetJson..',"'..v..'":{'
+end
+if #User ~= 0 then 
+GetJson = GetJson..'"Users":['
+for k,v in pairs(Users) do
+if k == 1 then
+GetJson =  GetJson..'"'..v..'"'
+else
+GetJson =  GetJson..',"'..v..'"'
+end
+end   
+GetJson = GetJson..'],'
 end
 if #Vips ~= 0 then 
 GetJson = GetJson..'"Vips":['
@@ -104,23 +115,12 @@ GetJson = GetJson..'"LinkGroups":"'..LinkGroups..'",'
 end
 GetJson = GetJson..'"Welcomes":"'..Welcomes..'"}'
 end
-if #Members ~= 0 then 
-GetJson = GetJson..',"mem":['
-for k,v in pairs(Members) do
-if k == 1 then
-GetJson =  GetJson..'"'..v..'"'
-else
-GetJson =  GetJson..',"'..v..'"'
-end
-end   
-GetJson = GetJson..'],'
-end
 GetJson = GetJson..'}}'
 local File = io.open('./'..Dragon..'.json', "w")
 File:write(GetJson)
 File:close()
 local SOFI = 'https://api.telegram.org/bot' .. TokenBot .. '/sendDocument'
-local curl = 'curl "' .. SOFI .. '" -F "chat_id='..DraGon..'" -F "document=@'..Dragon..'.json' .. '" -F "caption=⌯︙نسخه تلقائيه تحتوي على ↫ '..#list..' مجموعه\n⌯︙وتحتوي ايضاَ علئ ↫ '..#Members..' مشتركين\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ"'
+local curl = 'curl "' .. SOFI .. '" -F "chat_id='..DraGon..'" -F "document=@'..Dragon..'.json' .. '" -F "caption=⌯︙نسخه تلقائيه تحتوي على ↫ '..#list..' مجموعه\n⌯︙وتحتوي ايضاَ علئ ↫ '..#Users..' مشترك\n•-› ✓"'
 io.popen(curl)
 io.popen('fm -fr '..Dragon..'.json')
 DevSOFI:set(Dragon.."SOFI:AutoFile:Time",os.date("%x"))
