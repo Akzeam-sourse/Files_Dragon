@@ -1,15 +1,5 @@
 local function AutoFile(msg)
 local text = msg.content_.text_
-if Sudo(msg) then
-if text == 'تفعيل النسخه التلقائيه' or text == 'تفعيل جلب نسخه الكروبات' or text == 'تفعيل عمل نسخه للمجموعات' then   
-Dev_SOFI(msg.chat_id_,msg.id_, 1, "⌯︙تم تفعيل جلب نسخة الكروبات التلقائيه\n⌯︙سيتم ارسال نسخه تلقائيه للكروبات كل يوم الى خاص المطور الاساسي", 1, 'md')
-DevSOFI:del(Dragon.."SOFI:Lock:AutoFile")
-end
-if text == 'تعطيل النسخه التلقائيه' or text == 'تعطيل جلب نسخه الكروبات' or text == 'تعطيل عمل نسخه للمجموعات' then  
-Dev_SOFI(msg.chat_id_,msg.id_, 1, "⌯︙تم تعطيل جلب نسخة الكروبات التلقائيه", 1, 'md')
-DevSOFI:set(Dragon.."SOFI:Lock:AutoFile",true) 
-end 
-end
 
 if (text and not DevSOFI:get(Dragon.."SOFI:Lock:AutoFile")) then
 Time = DevSOFI:get(Dragon.."SOFI:AutoFile:Time")
