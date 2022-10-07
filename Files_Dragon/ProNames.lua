@@ -1,73 +1,73 @@
-local function ProNames(msg)
+local function MuteNames(msg)
 local text = msg.content_.text_
+function DeleteMessage_(chat,id,func)
+tdcli_function ({
+ID="DeleteMessages",
+chat_id_=chat,
+message_ids_=id
+},func or dl_cb,nil)
+end
 if ChatType == 'sp' or ChatType == 'gp'  then
-if text and (text:match("^وضع توحيد (.*)$") or text:match("^ضع توحيد (.*)$")) then
+if DevSOFI:get(XFor.."SOFI:Lock:MuteNames"..msg.chat_id_) then
 if Manager(msg) then
-if DevSOFI:get(Dragon.."SOFI:Lock:ProNames"..msg.chat_id_) then
-local Txt = text:match("^وضع توحيد (.*)$") or text:match("^ضع توحيد (.*)$")
-send(msg.chat_id_, msg.id_,'⌯︙تم تعيين ↫ '..Txt..' كتوحيد للمجموعه')
-DevSOFI:set(Dragon.."SOFI:ProNames:Txt"..msg.chat_id_,Txt)
-else
-send(msg.chat_id_, msg.id_,'⌯︙ميزة التوحيد معطله يرجى تفعيلها')
+if text and (text:match("^كتم اسم (.*)$") or text:match("^كتم الاسم (.*)$")) then
+local MuteName = text:match("^كتم اسم (.*)$") or text:match("^كتم الاسم (.*)$")
+send(msg.chat_id_, msg.id_, '⌯︙تم كتم الاسم ↫ '..MuteName)
+DevSOFI:sadd(XFor.."SOFI:Mute:Names"..msg.chat_id_, MuteName)
+end
+if text and (text:match("^الغاء كتم اسم (.*)$") or text:match("^الغاء كتم الاسم (.*)$")) then
+local UnMuteName = text:match("^الغاء كتم اسم (.*)$") or text:match("^الغاء كتم الاسم (.*)$")
+send(msg.chat_id_, msg.id_, '⌯︙تم الغاء كتم الاسم ↫ '..UnMuteName)
+DevSOFI:srem(XFor.."SOFI:Mute:Names"..msg.chat_id_, UnMuteName)
 end
 end
+if text == "حذف الاسماء المكتومه" and Constructor(msg) or text == "مسح الاسماء المكتومه" and Constructor(msg) then
+DevSOFI:del(XFor.."SOFI:Mute:Names"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, "⌯︙تم حذف الاسماء المكتومه")
 end
-if text and (text:match("^تعين عدد الكتم (.*)$") or text:match("^تعيين عدد الكتم (.*)$")) then
-if Manager(msg) then
-if DevSOFI:get(Dragon.."SOFI:Lock:ProNames"..msg.chat_id_) then
-local Num = text:match("^تعين عدد الكتم (.*)$") or text:match("^تعيين عدد الكتم (.*)$")
-send(msg.chat_id_, msg.id_,'⌯︙تم تعيين  ↫ '..Num..' عدد الكتم')
-DevSOFI:set(Dragon.."SOFI:ProNames:Num"..msg.chat_id_,Num)
-else
-send(msg.chat_id_, msg.id_,'⌯︙ميزة التوحيد معطله يرجى تفعيلها')
+if text == "الاسماء المكتومه" and Constructor(msg) then
+local AllNames = DevSOFI:smembers(XFor.."SOFI:Mute:Names"..msg.chat_id_)
+Text = "\n⌯︙قائمة الاسماء المكتومه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+for k,v in pairs(AllNames) do
+Text = Text..""..k.."~ (["..v.."])\n"
 end
+if #AllNames == 0 then
+Text = "⌯︙لاتوجد اسماء مكتومه"
 end
-end
-if DevSOFI:get(Dragon.."SOFI:Lock:ProNames"..msg.chat_id_) then
-if text == "التوحيد" or text == "توحيد" then
-if DevSOFI:get(Dragon.."SOFI:ProNames:Txt"..msg.chat_id_) then
-local ProNamesTxt = DevSOFI:get(Dragon.."SOFI:ProNames:Txt"..msg.chat_id_)
-local ProNamesNum = DevSOFI:get(Dragon.."SOFI:ProNames:Num"..msg.chat_id_) or 5
-send(msg.chat_id_, msg.id_,'⌯︙التوحيد هو ↫ '..ProNamesTxt..'\n⌯︙عدد المحاولات للكتم ↫ '..ProNamesNum)
-else
-send(msg.chat_id_, msg.id_,'⌯︙لم يتم تعيين توحيد للمجموعه')
+send(msg.chat_id_, msg.id_, Text)
 end
 end
-end
-if not msg.forward_info_ and not Constructor(msg) then
-if DevSOFI:get(Dragon.."SOFI:Lock:ProNames"..msg.chat_id_) and DevSOFI:get(Dragon.."SOFI:ProNames:Txt"..msg.chat_id_) then 
+if not Manager(msg) and DevSOFI:get(XFor.."SOFI:Lock:MuteNames"..msg.chat_id_) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-if result and result.first_name_ then 
-if result.first_name_:match("(.*)"..DevSOFI:get(Dragon.."SOFI:ProNames:Txt"..msg.chat_id_).."(.*)") then 
-DevSOFI:srem(Dragon..'SOFI:Muted:'..msg.chat_id_, msg.sender_user_id_)
-else
-local ProNamesTxt = DevSOFI:get(Dragon.."SOFI:ProNames:Num"..msg.chat_id_) or 5
-local UserNum = DevSOFI:get(Dragon.."SOFI:ProNames:UserNum"..msg.chat_id_..msg.sender_user_id_) or 0
-if (tonumber(UserNum) == tonumber(ProNamesTxt) or tonumber(UserNum) > tonumber(ProNamesTxt)) then 
-DevSOFI:sadd(Dragon..'SOFI:Muted:'..msg.chat_id_, msg.sender_user_id_)
-DevSOFI:del(Dragon.."SOFI:ProNames:UserNum"..msg.chat_id_..msg.sender_user_id_)
-send(msg.chat_id_, msg.id_,"⌯︙العضو ↫ ["..result.first_name_.."](https://t.me/"..(result.username_ or "Dev_Prox")..")\n⌯︙تم كتمه بسبب عدم وضع توحيد المجموعه بجانب اسمه")
-else 
-DevSOFI:incrby(Dragon.."SOFI:ProNames:UserNum"..msg.chat_id_..msg.sender_user_id_,1)
-send(msg.chat_id_, msg.id_, "⌯︙عذرا عزيزي ↫ ["..result.first_name_.."](https://t.me/"..(result.username_ or "Dev_Prox")..")\n⌯︙عليك وضع التوحيد ↫ `"..DevSOFI:get(Dragon.."SOFI:ProNames:Txt"..msg.chat_id_).."` بجانب اسمك\n⌯︙عدد المحاولات المتبقيه ↫ "..(tonumber(ProNamesTxt) - tonumber(UserNum)).."")
+if result.id_ then 
+XForName = ((result.first_name_ or "") .. (result.last_name_ or ""))
+if XForName then 
+XForNames = DevSOFI:smembers(XFor.."SOFI:Mute:Names"..msg.chat_id_) or ""
+if XForNames and XForNames[1] then 
+for i=1,#XForNames do 
+if XForName:match("(.*)("..XForNames[i]..")(.*)") then 
+DeleteMessage_(msg.chat_id_,{[0] = msg.id_}) 
+end
+end
 end
 end
 end
 end,nil)
 end
-end
 
-if text == "تفعيل التوحيد" and Constructor(msg) then
-send(msg.chat_id_, msg.id_, '⌯︙تم تفعيل توحيد المجموعه')
-DevSOFI:set(Dragon.."SOFI:Lock:ProNames"..msg.chat_id_,true)
+if Constructor(msg) then
+if text == "تفعيل كتم الاسم" or text == "تفعيل كتم الاسماء" then
+send(msg.chat_id_, msg.id_, '⌯︙تم التفعيل سيتم كتم العضو الذي يضع الاسماء المكتومه')
+DevSOFI:set(XFor.."SOFI:Lock:MuteNames"..msg.chat_id_,true)
 end
-if text == "تعطيل التوحيد" and Constructor(msg) then
-send(msg.chat_id_, msg.id_, '⌯︙تم تعطيل توحيد المجموعه')
-DevSOFI:del(Dragon.."SOFI:Lock:ProNames"..msg.chat_id_)
+if text == "تعطيل كتم الاسم" or text == "تعطيل كتم الاسماء" then
+send(msg.chat_id_, msg.id_, '⌯︙تم تعطيل سيتم كتم العضو الذي يضع الاسماء المكتومه')
+DevSOFI:del(XFor.."SOFI:Lock:MuteNames"..msg.chat_id_)
+end
 end
 end
 
 end
 return {
-Dragon = ProNames
+XFor = MuteNames,
 }
