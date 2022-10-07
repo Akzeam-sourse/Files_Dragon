@@ -1,23 +1,23 @@
 local function AutoFile(msg)
 local text = msg.content_.text_
 
-if (text and not DevSOFI:get(Dragon.."SOFI:Lock:AutoFile")) then
-Time = DevSOFI:get(Dragon.."SOFI:AutoFile:Time")
+if (text and not DevSOFI:get(XFor.."SOFI:Lock:AutoFile")) then
+Time = DevSOFI:get(XFor.."SOFI:AutoFile:Time")
 if Time then 
 if Time ~= os.date("%x") then 
-local list = DevSOFI:smembers(Dragon..'SOFI:Groups') 
-local Users = DevSOFI:smembers(Dragon..'SOFI:Users') 
-local BotName = (DevSOFI:get(Dragon.."SOFI:NameBot") or 'دراكون')
-local GetJson = '{"BotId": '..Dragon..',"BotName": "'..BotName..'","GroupsList":{'  
+local list = DevSOFI:smembers(XFor..'SOFI:Groups') 
+local Users = DevSOFI:smembers(XFor..'SOFI:Users') 
+local BotName = (DevSOFI:get(XFor.."SOFI:NameBot") or 'دراكون')
+local GetJson = '{"BotId": '..XFor..',"BotName": "'..BotName..'","GroupsList":{'  
 for k,v in pairs(list) do 
-LinkGroups = DevSOFI:get(Dragon.."SOFI:Groups:Links"..v)
-Welcomes = DevSOFI:get(Dragon..'SOFI:Groups:Welcomes'..v) or ''
-SOFIConstructors = DevSOFI:smembers(Dragon..'SOFI:SOFIConstructor:'..v)
-BasicConstructors = DevSOFI:smembers(Dragon..'SOFI:BasicConstructor:'..v)
-Constructors = DevSOFI:smembers(Dragon..'SOFI:Constructor:'..v)
-Managers = DevSOFI:smembers(Dragon..'SOFI:Managers:'..v)
-Admis = DevSOFI:smembers(Dragon..'SOFI:Admins:'..v)
-Vips = DevSOFI:smembers(Dragon..'SOFI:VipMem:'..v)
+LinkGroups = DevSOFI:get(XFor.."SOFI:Groups:Links"..v)
+Welcomes = DevSOFI:get(XFor..'SOFI:Groups:Welcomes'..v) or ''
+SOFIConstructors = DevSOFI:smembers(XFor..'SOFI:SOFIConstructor:'..v)
+BasicConstructors = DevSOFI:smembers(XFor..'SOFI:BasicConstructor:'..v)
+Constructors = DevSOFI:smembers(XFor..'SOFI:Constructor:'..v)
+Managers = DevSOFI:smembers(XFor..'SOFI:Managers:'..v)
+Admis = DevSOFI:smembers(XFor..'SOFI:Admins:'..v)
+Vips = DevSOFI:smembers(XFor..'SOFI:VipMem:'..v)
 if k == 1 then
 GetJson = GetJson..'"'..v..'":{'
 else
@@ -106,21 +106,21 @@ end
 GetJson = GetJson..'"Welcomes":"'..Welcomes..'"}'
 end
 GetJson = GetJson..'}}'
-local File = io.open('./'..Dragon..'.json', "w")
+local File = io.open('./'..XFor..'.json', "w")
 File:write(GetJson)
 File:close()
 local SOFI = 'https://api.telegram.org/bot' .. TokenBot .. '/sendDocument'
-local curl = 'curl "' .. SOFI .. '" -F "chat_id='..DraGon..'" -F "document=@'..Dragon..'.json' .. '" -F "caption=⌯︙نسخه تلقائيه تحتوي على ↫ '..#list..' مجموعه\n⌯︙وتحتوي ايضاَ علئ ↫ '..#Users..' مشترك\n•-› ✓"'
+local curl = 'curl "' .. SOFI .. '" -F "chat_id='..XFor..'" -F "document=@'..XFor..'.json' .. '" -F "caption=⌯︙نسخه تلقائيه تحتوي على ↫ '..#list..' مجموعه\n⌯︙وتحتوي ايضاَ علئ ↫ '..#Users..' مشترك\n•-› ✓"'
 io.popen(curl)
-io.popen('fm -fr '..Dragon..'.json')
-DevSOFI:set(Dragon.."SOFI:AutoFile:Time",os.date("%x"))
+io.popen('fm -fr '..XFor..'.json')
+DevSOFI:set(XFor.."SOFI:AutoFile:Time",os.date("%x"))
 end
 else 
-DevSOFI:set(Dragon.."SOFI:AutoFile:Time",os.date("%x"))
+DevSOFI:set(XFor.."SOFI:AutoFile:Time",os.date("%x"))
 end
 end
 
 end
 return {
-Dragon = AutoFile
+XFor = AutoFile
 }
